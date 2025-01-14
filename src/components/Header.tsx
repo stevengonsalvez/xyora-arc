@@ -47,7 +47,7 @@ export default function Header() {
           >
             <Link to="/" className="-m-1.5 p-1.5 flex items-center gap-3">
               <motion.img 
-                src="/logo.jpg" 
+                src={`${import.meta.env.BASE_URL}logo.jpg`} 
                 alt="Xyora Arc Logo" 
                 className="h-8 w-auto rounded"
                 whileHover={{ scale: 1.1 }}
@@ -125,7 +125,7 @@ export default function Header() {
         <div className="flex items-center justify-between">
           <Link to="/" className="-m-1.5 p-1.5 flex items-center gap-3">
             <img 
-              src="/logo.jpg" 
+              src={`${import.meta.env.BASE_URL}logo.jpg`} 
               alt="Xyora Arc Logo" 
               className="h-8 w-auto rounded"
             />

@@ -8,14 +8,14 @@ const products = [
     id: 1,
     title: 'Papaya Notes',
     description: 'The ultimate digital note-taking app to elevate your note-taking experience and boost productivity',
-    image: '/papaya-notes.png',
+    image: `${import.meta.env.BASE_URL}papaya-notes.png`,
     features: ['Efficient', 'Secure', 'AI Smart', 'Integrated']
   },
   {
     id: 2,
     title: 'CallNinjaPro',
     description: 'An intelligent AI phone assistant designed to save time and keep your calls spam-free. Experience seamless communication with advanced call filtering and AI-powered features.',
-    image: '/callninjapro.jpg',
+    image: `${import.meta.env.BASE_URL}callninjapro.jpg`,
     features: [
       'Spam management',
       'agentic AI Assistant',
@@ -26,7 +26,7 @@ const products = [
     id: 3,
     title: 'ZeroTouch TestOps',
     description: 'An Agentic AI-powered platform that streamlines the entire software testing lifecycle, including security, UI, and API testing, to ensure flawless product delivery.',
-    image: '/zerotouch-testops.jpg',
+    image: `${import.meta.env.BASE_URL}zerotouch-testops.jpg`,
     features: [
       'Agentic AI testing',
       'Security, UI, and API Testing',
@@ -36,7 +36,7 @@ const products = [
     id: 4,
     title: 'Xyora Notes',
     description: 'Document your journey,plan your next adventure',
-    image: '/xyora-notes.jpg',
+    image: `${import.meta.env.BASE_URL}xyora-notes.jpg`,
     features: [
       'Intuitive Note-Taking',
       'Journey Documentation',

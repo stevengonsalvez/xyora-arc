@@ -1,19 +1,15 @@
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { useRef } from 'react';
 import { useInView } from 'react-intersection-observer';
 import ProductCards from '../components/ProductCards';
 
 export default function Home() {
   const { scrollY } = useScroll();
   const y1 = useTransform(scrollY, [0, 300], [0, 100]);
-  const y2 = useTransform(scrollY, [0, 300], [0, -100]);
 
   const [ref, inView] = useInView({
     triggerOnce: true,
     threshold: 0.1,
   });
-
-  const containerRef = useRef(null);
 
   return (
     <div className="overflow-hidden bg-dark text-text-primary">
