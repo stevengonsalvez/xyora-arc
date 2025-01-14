@@ -17,8 +17,13 @@ export default function Header() {
     <header className="fixed w-full bg-dark-nav border-b border-dark-border backdrop-blur-sm z-50">
       <nav className="container mx-auto px-4" aria-label="Global">
         <div className="flex items-center justify-between py-6">
-          <div className="flex lg:flex-1">
-            <Link to="/" className="-m-1.5 p-1.5">
+          <div className="flex lg:flex-1 items-center">
+            <Link to="/" className="-m-1.5 p-1.5 flex items-center gap-3">
+              <img 
+                src="/logo.jpg" 
+                alt="Xyora Arc Logo" 
+                className="h-8 w-auto rounded"
+              />
               <span className="text-2xl font-heading font-bold bg-gradient-primary bg-clip-text text-transparent">
                 Xyora Arc
               </span>
@@ -57,7 +62,12 @@ export default function Header() {
         }`}
       >
         <div className="flex items-center justify-between">
-          <Link to="/" className="-m-1.5 p-1.5">
+          <Link to="/" className="-m-1.5 p-1.5 flex items-center gap-3">
+            <img 
+              src="/logo.jpg" 
+              alt="Xyora Arc Logo" 
+              className="h-8 w-auto rounded"
+            />
             <span className="text-2xl font-heading font-bold bg-gradient-primary bg-clip-text text-transparent">
               Xyora Arc
             </span>
