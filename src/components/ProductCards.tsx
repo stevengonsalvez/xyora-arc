@@ -50,9 +50,18 @@ export default function ProductCards() {
 
   const scroll = (direction: 'left' | 'right') => {
     if (scrollContainerRef.current) {
-      const scrollAmount = direction === 'left' ? -400 : 400;
-      scrollContainerRef.current.scrollBy({
-        left: scrollAmount,
+      const container = scrollContainerRef.current;
+      const cardWidth = 600; // Width of each card
+      const gap = 32; // Gap between cards (8 * 4px = 32px)
+      const scrollAmount = cardWidth + gap;
+      
+      const currentScroll = container.scrollLeft;
+      const targetScroll = direction === 'left' 
+        ? Math.floor(currentScroll / scrollAmount) * scrollAmount - scrollAmount
+        : Math.ceil(currentScroll / scrollAmount) * scrollAmount + scrollAmount;
+
+      container.scrollTo({
+        left: targetScroll,
         behavior: 'smooth'
       });
     }
@@ -85,44 +94,46 @@ export default function ProductCards() {
         </div>
       </motion.div>
 
-      <div className="relative px-8">
+      <div className="relative px-12">
         {/* Scroll Buttons */}
         <IconButton
           onClick={() => scroll('left')}
-          className="absolute left-2 top-1/2 -translate-y-1/2 z-10"
+          className="absolute left-0 top-1/2 -translate-y-1/2 z-10"
           sx={{ 
-            backgroundColor: 'rgba(0,184,217,0.1)',
-            backdropFilter: 'blur(4px)',
-            border: '2px solid rgba(0,184,217,0.2)',
-            color: '#00B8D9',
+            backgroundColor: 'rgba(22,22,31,0.95)',
+            backdropFilter: 'blur(8px)',
+            border: '1px solid rgba(255,255,255,0.1)',
+            borderRadius: '12px',
+            color: '#94A3B8',
             width: '48px',
             height: '48px',
             '&:hover': { 
-              backgroundColor: 'rgba(0,184,217,0.2)',
-              border: '2px solid rgba(0,184,217,0.3)',
+              backgroundColor: 'rgba(30,30,42,0.95)',
+              color: '#FFFFFF'
             }
           }}
         >
-          <ChevronLeft className="w-8 h-8" />
+          <ChevronLeft className="w-6 h-6" />
         </IconButton>
         
         <IconButton
           onClick={() => scroll('right')}
-          className="absolute right-2 top-1/2 -translate-y-1/2 z-10"
+          className="absolute right-0 top-1/2 -translate-y-1/2 z-10"
           sx={{ 
-            backgroundColor: 'rgba(0,184,217,0.1)',
-            backdropFilter: 'blur(4px)',
-            border: '2px solid rgba(0,184,217,0.2)',
-            color: '#00B8D9',
+            backgroundColor: 'rgba(22,22,31,0.95)',
+            backdropFilter: 'blur(8px)',
+            border: '1px solid rgba(255,255,255,0.1)',
+            borderRadius: '12px',
+            color: '#94A3B8',
             width: '48px',
             height: '48px',
             '&:hover': { 
-              backgroundColor: 'rgba(0,184,217,0.2)',
-              border: '2px solid rgba(0,184,217,0.3)',
+              backgroundColor: 'rgba(30,30,42,0.95)',
+              color: '#FFFFFF'
             }
           }}
         >
-          <ChevronRight className="w-8 h-8" />
+          <ChevronRight className="w-6 h-6" />
         </IconButton>
 
         {/* Cards Container */}

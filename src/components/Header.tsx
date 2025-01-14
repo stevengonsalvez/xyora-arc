@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 
 const navigation = [
@@ -10,25 +10,58 @@ const navigation = [
   { name: 'Contact', href: '/contact' },
 ];
 
+const navItemVariants = {
+  initial: { opacity: 0, y: -20 },
+  animate: (i: number) => ({
+    opacity: 1,
+    y: 0,
+    transition: {
+      delay: i * 0.1,
+      duration: 0.5,
+      ease: [0.6, -0.05, 0.01, 0.99]
+    }
+  }),
+  hover: {
+    scale: 1.05,
+    transition: {
+      type: "spring",
+      stiffness: 400,
+      damping: 10
+    }
+  }
+};
+
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const location = useLocation();
 
   return (
     <header className="fixed w-full bg-dark-nav border-b border-dark-border backdrop-blur-sm z-50">
       <nav className="container mx-auto px-4" aria-label="Global">
         <div className="flex items-center justify-between py-6">
-          <div className="flex lg:flex-1 items-center">
+          <motion.div 
+            className="flex lg:flex-1 items-center"
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5 }}
+          >
             <Link to="/" className="-m-1.5 p-1.5 flex items-center gap-3">
-              <img 
+              <motion.img 
                 src="/logo.jpg" 
                 alt="Xyora Arc Logo" 
                 className="h-8 w-auto rounded"
+                whileHover={{ scale: 1.1 }}
+                transition={{ type: "spring", stiffness: 400, damping: 10 }}
               />
-              <span className="text-2xl font-heading font-bold bg-gradient-primary bg-clip-text text-transparent">
+              <motion.span 
+                className="text-2xl font-heading font-bold bg-gradient-primary bg-clip-text text-transparent"
+                whileHover={{ scale: 1.05 }}
+                transition={{ type: "spring", stiffness: 400, damping: 10 }}
+              >
                 Xyora Arc
-              </span>
+              </motion.span>
             </Link>
-          </div>
+          </motion.div>
           <div className="flex lg:hidden">
             <button
               type="button"
@@ -38,15 +71,43 @@ export default function Header() {
               <Bars3Icon className="h-6 w-6" aria-hidden="true" />
             </button>
           </div>
-          <div className="hidden lg:flex lg:gap-x-12">
-            {navigation.map((item) => (
-              <Link
+          <div className="hidden lg:flex lg:gap-x-4">
+            {navigation.map((item, i) => (
+              <motion.div
                 key={item.name}
-                to={item.href}
-                className="text-sm font-semibold leading-6 text-text-secondary hover:text-text-primary transition-colors"
+                custom={i}
+                initial="initial"
+                animate="animate"
+                whileHover="hover"
+                variants={navItemVariants}
               >
-                {item.name}
-              </Link>
+                <Link
+                  to={item.href}
+                  className={`
+                    relative px-4 py-2 text-sm font-semibold leading-6 
+                    text-text-secondary hover:text-text-primary 
+                    bg-dark-card rounded-full border border-dark-border 
+                    backdrop-blur-sm transition-all duration-300
+                    hover:bg-dark-lighter hover:border-cyan-500/30
+                    overflow-hidden group
+                  `}
+                >
+                  <motion.span
+                    className="relative z-10"
+                    whileHover={{ scale: 1.05 }}
+                  >
+                    {item.name}
+                  </motion.span>
+                  {location.pathname === item.href && (
+                    <motion.div
+                      className="absolute inset-0 bg-gradient-to-r from-cyan-500/10 to-blue-500/10"
+                      layoutId="active-nav"
+                      transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                    />
+                  )}
+                  <div className="absolute inset-0 -z-10 bg-gradient-to-r from-cyan-500/0 via-cyan-500/0 to-blue-500/0 opacity-0 group-hover:opacity-20 transition-opacity duration-300" />
+                </Link>
+              </motion.div>
             ))}
           </div>
         </div>
