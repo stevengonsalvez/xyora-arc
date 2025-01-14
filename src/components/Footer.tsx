@@ -39,14 +39,14 @@ const navigation = {
 
 export default function Footer() {
   return (
-    <footer className="bg-white">
+    <footer className="bg-dark-footer border-t border-dark-border">
       <div className="container mx-auto py-12 px-4 sm:px-6 lg:px-8">
         <nav className="-mx-5 -my-2 flex flex-wrap justify-center" aria-label="Footer">
           {navigation.main.map((item) => (
             <div key={item.name} className="px-5 py-2">
               <Link
                 to={item.href}
-                className="text-base text-gray-500 hover:text-gray-900"
+                className="text-base text-text-secondary hover:text-text-primary transition-colors"
               >
                 {item.name}
               </Link>
@@ -58,7 +58,7 @@ export default function Footer() {
             <a
               key={item.name}
               href={item.href}
-              className="text-gray-400 hover:text-gray-500"
+              className="text-text-secondary hover:text-text-primary transition-colors"
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -67,7 +67,7 @@ export default function Footer() {
             </a>
           ))}
         </div>
-        <p className="mt-8 text-center text-base text-gray-400">
+        <p className="mt-8 text-center text-base text-text-secondary">
           &copy; {new Date().getFullYear()} Xyora Arc. All rights reserved.
         </p>
       </div>
