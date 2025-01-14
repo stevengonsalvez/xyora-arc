@@ -1,6 +1,7 @@
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { useRef } from 'react';
 import { useInView } from 'react-intersection-observer';
+import ProductCards from '../components/ProductCards';
 
 export default function Home() {
   const { scrollY } = useScroll();
@@ -45,6 +46,9 @@ export default function Home() {
           </motion.div>
         </div>
       </section>
+
+      {/* Products Section */}
+      <ProductCards />
 
       {/* About Section */}
       <section className="py-24 bg-dark-lighter" ref={ref}>
