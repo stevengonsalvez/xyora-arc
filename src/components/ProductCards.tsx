@@ -1,7 +1,5 @@
 import { motion } from 'framer-motion';
-import { Card, CardContent, CardMedia, Typography, Button, IconButton } from '@mui/material';
-import { ChevronLeft, ChevronRight } from '@mui/icons-material';
-import { useRef } from 'react';
+import { Card, CardContent, CardMedia, Typography, Button } from '@mui/material';
 
 const products = [
   {
@@ -45,28 +43,52 @@ const products = [
   }
 ];
 
-export default function ProductCards() {
-  const scrollContainerRef = useRef<HTMLDivElement>(null);
-
-  const scroll = (direction: 'left' | 'right') => {
-    if (scrollContainerRef.current) {
-      const container = scrollContainerRef.current;
-      const cardWidth = 600; // Width of each card
-      const gap = 32; // Gap between cards (8 * 4px = 32px)
-      const scrollAmount = cardWidth + gap;
-      
-      const currentScroll = container.scrollLeft;
-      const targetScroll = direction === 'left' 
-        ? Math.floor(currentScroll / scrollAmount) * scrollAmount - scrollAmount
-        : Math.ceil(currentScroll / scrollAmount) * scrollAmount + scrollAmount;
-
-      container.scrollTo({
-        left: targetScroll,
-        behavior: 'smooth'
-      });
+const cardVariants = {
+  initial: { 
+    scale: 1,
+    y: 0,
+    rotateX: 0,
+    boxShadow: "0px 0px 0px rgba(0, 184, 217, 0)"
+  },
+  hover: { 
+    scale: 1.05,
+    y: -10,
+    rotateX: 5,
+    boxShadow: "0px 20px 40px rgba(0, 184, 217, 0.2)",
+    transition: {
+      duration: 0.3,
+      ease: "easeOut"
     }
-  };
+  }
+};
 
+const imageVariants = {
+  initial: { scale: 1 },
+  hover: { 
+    scale: 1.1,
+    transition: {
+      duration: 0.4,
+      ease: "easeOut"
+    }
+  }
+};
+
+const buttonVariants = {
+  initial: { 
+    scale: 1,
+    backgroundColor: "#00B8D9"
+  },
+  hover: { 
+    scale: 1.05,
+    backgroundColor: "#0095B0",
+    transition: {
+      duration: 0.2,
+      ease: "easeOut"
+    }
+  }
+};
+
+export default function ProductCards() {
   return (
     <section className="relative py-20 bg-dark-lighter overflow-hidden">
       <motion.div
@@ -94,57 +116,11 @@ export default function ProductCards() {
         </div>
       </motion.div>
 
-      <div className="relative px-12">
-        {/* Scroll Buttons */}
-        <IconButton
-          onClick={() => scroll('left')}
-          className="absolute left-0 top-1/2 -translate-y-1/2 z-10"
-          sx={{ 
-            backgroundColor: 'rgba(22,22,31,0.95)',
-            backdropFilter: 'blur(8px)',
-            border: '1px solid rgba(255,255,255,0.1)',
-            borderRadius: '12px',
-            color: '#94A3B8',
-            width: '48px',
-            height: '48px',
-            '&:hover': { 
-              backgroundColor: 'rgba(30,30,42,0.95)',
-              color: '#FFFFFF'
-            }
-          }}
-        >
-          <ChevronLeft className="w-6 h-6" />
-        </IconButton>
-        
-        <IconButton
-          onClick={() => scroll('right')}
-          className="absolute right-0 top-1/2 -translate-y-1/2 z-10"
-          sx={{ 
-            backgroundColor: 'rgba(22,22,31,0.95)',
-            backdropFilter: 'blur(8px)',
-            border: '1px solid rgba(255,255,255,0.1)',
-            borderRadius: '12px',
-            color: '#94A3B8',
-            width: '48px',
-            height: '48px',
-            '&:hover': { 
-              backgroundColor: 'rgba(30,30,42,0.95)',
-              color: '#FFFFFF'
-            }
-          }}
-        >
-          <ChevronRight className="w-6 h-6" />
-        </IconButton>
-
-        {/* Cards Container */}
-        <div
-          ref={scrollContainerRef}
-          className="flex gap-8 overflow-x-auto scrollbar-hide snap-x snap-mandatory pb-8"
-          style={{ 
-            scrollbarWidth: 'none',
-            msOverflowStyle: 'none',
-            WebkitOverflowScrolling: 'touch'
-          }}
+      <div className="relative max-w-[100vw] overflow-hidden">
+        <div 
+          className="flex overflow-x-auto gap-6 px-[10vw] pb-8 snap-x snap-mandatory 
+            [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]
+            hover:cursor-grab active:cursor-grabbing"
         >
           {products.map((product, index) => (
             <motion.div
@@ -152,68 +128,77 @@ export default function ProductCards() {
               initial={{ opacity: 0, x: 50 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="flex-shrink-0 w-[600px] snap-center"
+              className="flex-shrink-0 w-[300px] md:w-[400px] snap-center"
             >
-              <Card 
-                className="h-full"
-                sx={{ 
-                  backgroundColor: 'rgba(22,22,31,0.8)',
-                  backdropFilter: 'blur(10px)',
-                  border: '1px solid rgba(30,30,42,0.5)',
-                  '&:hover': {
-                    transform: 'translateY(-5px)',
-                    transition: 'transform 0.3s ease-in-out'
-                  }
-                }}
+              <motion.div
+                variants={cardVariants}
+                initial="initial"
+                whileHover="hover"
+                className="h-full rounded-lg overflow-hidden perspective-1000"
               >
-                <CardMedia
-                  component="img"
-                  className="h-80"
-                  image={product.image}
-                  alt={product.title}
-                  sx={{
-                    objectFit: 'cover',
-                    objectPosition: 'center',
+                <Card 
+                  className="h-full relative bg-transparent"
+                  sx={{ 
+                    backgroundColor: 'rgba(22,22,31,0.8)',
+                    backdropFilter: 'blur(10px)',
+                    border: '1px solid rgba(30,30,42,0.5)',
                   }}
-                />
-                <CardContent className="p-6">
-                  <Typography 
-                    variant="h5" 
-                    component="h3"
-                    className="font-heading font-bold text-text-primary mb-2"
-                  >
-                    {product.title}
-                  </Typography>
-                  <Typography 
-                    variant="body2"
-                    className="text-text-secondary mb-4"
-                  >
-                    {product.description}
-                  </Typography>
-                  <div className="flex flex-wrap gap-2 mb-4">
-                    {product.features.map((feature, i) => (
-                      <span
-                        key={i}
-                        className="px-2 py-1 text-xs rounded-full bg-dark-nav text-text-secondary"
+                >
+                  <motion.div variants={imageVariants} className="overflow-hidden">
+                    <CardMedia
+                      component="img"
+                      className="h-40 md:h-56"
+                      image={product.image}
+                      alt={product.title}
+                      sx={{
+                        objectFit: 'cover',
+                        objectPosition: 'center',
+                      }}
+                    />
+                  </motion.div>
+                  <CardContent className="p-4 md:p-6">
+                    <Typography 
+                      variant="h5" 
+                      component="h3"
+                      className="font-heading font-bold text-text-primary mb-2 text-lg md:text-xl"
+                    >
+                      {product.title}
+                    </Typography>
+                    <Typography 
+                      variant="body2"
+                      className="text-text-secondary mb-4 text-sm md:text-base line-clamp-3"
+                    >
+                      {product.description}
+                    </Typography>
+                    <div className="flex flex-wrap gap-2 mb-4">
+                      {product.features.map((feature, i) => (
+                        <motion.span
+                          key={i}
+                          initial={{ opacity: 0.8 }}
+                          whileHover={{ opacity: 1, scale: 1.05 }}
+                          className="px-2 py-1 text-xs rounded-full bg-dark-nav text-text-secondary"
+                        >
+                          {feature}
+                        </motion.span>
+                      ))}
+                    </div>
+                    <motion.div variants={buttonVariants}>
+                      <Button
+                        variant="contained"
+                        className="mt-2 text-sm md:text-base w-full"
+                        sx={{
+                          backgroundColor: '#00B8D9',
+                          '&:hover': {
+                            backgroundColor: '#0095B0'
+                          }
+                        }}
                       >
-                        {feature}
-                      </span>
-                    ))}
-                  </div>
-                  <Button
-                    variant="contained"
-                    className="mt-2"
-                    sx={{
-                      backgroundColor: '#00B8D9',
-                      '&:hover': {
-                        backgroundColor: '#0095B0'
-                      }
-                    }}
-                  >
-                    Learn More
-                  </Button>
-                </CardContent>
-              </Card>
+                        Learn More
+                      </Button>
+                    </motion.div>
+                  </CardContent>
+                </Card>
+              </motion.div>
             </motion.div>
           ))}
         </div>

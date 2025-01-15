@@ -85,11 +85,17 @@ export default function Header() {
                   to={item.href}
                   className={`
                     relative px-4 py-2 text-sm font-semibold leading-6 
-                    text-text-secondary hover:text-text-primary 
-                    bg-dark-card rounded-full border border-dark-border 
+                    ${location.pathname === item.href 
+                      ? 'text-text-primary bg-dark-lighter border-cyan-500/30' 
+                      : 'text-text-secondary bg-dark-card border-dark-border'
+                    }
+                    rounded-full border
                     backdrop-blur-sm transition-all duration-300
                     hover:bg-dark-lighter hover:border-cyan-500/30
+                    hover:text-text-primary
                     overflow-hidden group
+                    flex items-center justify-center
+                    min-w-[100px]
                   `}
                 >
                   <motion.span
@@ -98,13 +104,6 @@ export default function Header() {
                   >
                     {item.name}
                   </motion.span>
-                  {location.pathname === item.href && (
-                    <motion.div
-                      className="absolute inset-0 bg-gradient-to-r from-cyan-500/10 to-blue-500/10"
-                      layoutId="active-nav"
-                      transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
-                    />
-                  )}
                   <div className="absolute inset-0 -z-10 bg-gradient-to-r from-cyan-500/0 via-cyan-500/0 to-blue-500/0 opacity-0 group-hover:opacity-20 transition-opacity duration-300" />
                 </Link>
               </motion.div>
@@ -118,12 +117,17 @@ export default function Header() {
         initial={{ opacity: 0, x: '100%' }}
         animate={{ opacity: mobileMenuOpen ? 1 : 0, x: mobileMenuOpen ? '0%' : '100%' }}
         transition={{ duration: 0.3 }}
-        className={`fixed inset-y-0 right-0 z-50 w-full bg-dark-nav px-6 py-6 sm:max-w-sm border-l border-dark-border ${
+        className={`fixed inset-y-0 right-0 z-[100] w-full sm:max-w-sm border-l border-dark-border ${
           mobileMenuOpen ? '' : 'pointer-events-none'
         }`}
+        style={{
+          backgroundColor: '#0D0D12',
+          boxShadow: '0 0 20px rgba(0,0,0,0.5)',
+          backgroundImage: 'linear-gradient(to bottom, rgba(22,22,31,0.98), rgba(13,13,18,0.98))'
+        }}
       >
-        <div className="flex items-center justify-between">
-          <Link to="/" className="-m-1.5 p-1.5 flex items-center gap-3">
+        <div className="flex items-center justify-between px-6 py-6 border-b border-dark-border bg-dark">
+          <Link to="/" className="-m-1.5 p-1.5 flex items-center gap-3" onClick={() => setMobileMenuOpen(false)}>
             <img 
               src={`${import.meta.env.BASE_URL}logo.jpg`} 
               alt="Xyora Arc Logo" 
@@ -141,20 +145,25 @@ export default function Header() {
             <XMarkIcon className="h-6 w-6" aria-hidden="true" />
           </button>
         </div>
-        <div className="mt-6 flow-root">
-          <div className="-my-6 divide-y divide-dark-border">
-            <div className="space-y-2 py-6">
-              {navigation.map((item) => (
-                <Link
-                  key={item.name}
-                  to={item.href}
-                  className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-text-secondary hover:bg-dark-card hover:text-text-primary"
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  {item.name}
-                </Link>
-              ))}
-            </div>
+        <div className="px-6 py-6 bg-dark-nav bg-opacity-100">
+          <div className="flex flex-col space-y-2">
+            {navigation.map((item) => (
+              <Link
+                key={item.name}
+                to={item.href}
+                className={`
+                  block rounded-lg px-4 py-3 text-base font-semibold
+                  ${location.pathname === item.href 
+                    ? 'text-text-primary bg-dark-lighter' 
+                    : 'text-text-secondary hover:bg-dark-card hover:text-text-primary'
+                  }
+                  transition-all duration-300
+                `}
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                {item.name}
+              </Link>
+            ))}
           </div>
         </div>
       </motion.div>

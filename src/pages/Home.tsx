@@ -37,7 +37,7 @@ export default function Home() {
               <span className="text-primary-cyan">.</span>
             </h1>
             <p className="text-xl text-text-secondary max-w-3xl mx-auto">
-              Xyora Arc is a forward-thinking business that leverages expertise and AI to develop innovative apps and solutions, bridging technology with real-world needs and delivering impactful, practical products.
+            Xyora Arc creates innovative AI-powered solutions that bridge technology and real-world needs. We build impactful applications that transform business challenges into practical, forward-thinking solutions.
             </p>
           </motion.div>
         </div>
