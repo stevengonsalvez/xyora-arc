@@ -1,6 +1,7 @@
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import ProductCards from '../components/ProductCards';
+import '../cube-animation.css';
 
 export default function Home() {
   const { scrollY } = useScroll();
@@ -15,6 +16,18 @@ export default function Home() {
     <div className="overflow-hidden bg-dark text-text-primary">
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+        {/* Cube Animation */}
+        <div className="cube-container">
+          <div className="cube"></div>
+          <div className="cube"></div>
+          <div className="cube"></div>
+          <div className="cube"></div>
+          <div className="cube"></div>
+          <div className="cube"></div>
+          <div className="cube"></div>
+          <div className="cube"></div>
+        </div>
+        
         {/* Spotlight Effect */}
         <motion.div
           style={{ y: y1 }}
