@@ -22,12 +22,14 @@ const products = [
   },
   {
     id: 3,
-    title: 'ZeroTouch TestOps',
-    description: 'An Agentic AI-powered platform that streamlines the entire software testing lifecycle, including security, UI, and API testing, to ensure flawless product delivery.',
-    image: `${import.meta.env.BASE_URL}zerotouch-testops.jpg`,
+    title: 'Xyora Events',
+    description: 'A standalone SaaS platform that simplifies event management for community-led and small-scale organizers. Offering affordable ticketing, sponsorship engagement tools, and hybrid event solutions for cultural associations, grassroots movements, and independent creators.',
+    image: `${import.meta.env.BASE_URL}xyora-events.png`,
     features: [
-      'Agentic AI testing',
-      'Security, UI, and API Testing',
+      'Affordable Ticketing',
+      'Sponsor Marketplace',
+      'Real-time Analytics',
+      'GDPR Compliance'
     ]
   },
   {
@@ -145,16 +147,32 @@ export default function ProductCards() {
                   }}
                 >
                   <motion.div variants={imageVariants} className="overflow-hidden">
-                    <CardMedia
-                      component="img"
-                      className="h-40 md:h-56"
-                      image={product.image}
-                      alt={product.title}
-                      sx={{
-                        objectFit: 'cover',
-                        objectPosition: 'center',
-                      }}
-                    />
+                    {product.title === 'Xyora Events' ? (
+                      <div style={{ background: 'linear-gradient(135deg, #002B5C 60%, #8A2BE2 100%)', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }} className="h-40 md:h-56">
+                        <CardMedia
+                          component="img"
+                          className="h-32 md:h-44 mx-auto"
+                          image={product.image}
+                          alt={product.title}
+                          sx={{
+                            objectFit: 'contain',
+                            objectPosition: 'center',
+                            background: 'transparent',
+                          }}
+                        />
+                      </div>
+                    ) : (
+                      <CardMedia
+                        component="img"
+                        className="h-40 md:h-56"
+                        image={product.image}
+                        alt={product.title}
+                        sx={{
+                          objectFit: 'cover',
+                          objectPosition: 'center',
+                        }}
+                      />
+                    )}
                   </motion.div>
                   <CardContent className="p-4 md:p-6">
                     <Typography 
@@ -192,8 +210,17 @@ export default function ProductCards() {
                             backgroundColor: '#0095B0'
                           }
                         }}
+                        {...(product.title === 'Papaya Notes' 
+                          ? { 
+                              component: 'a',
+                              href: 'https://papayanotes.com/',
+                              target: '_blank',
+                              rel: 'noopener noreferrer'
+                            }
+                          : { disabled: true }
+                        )}
                       >
-                        Learn More
+                        {product.title === 'Papaya Notes' ? 'Learn More' : 'Coming Soon'}
                       </Button>
                     </motion.div>
                   </CardContent>

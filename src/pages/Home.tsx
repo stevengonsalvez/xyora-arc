@@ -1,6 +1,7 @@
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import ProductCards from '../components/ProductCards';
+import '../cube-animation.css';
 
 export default function Home() {
   const { scrollY } = useScroll();
@@ -15,6 +16,18 @@ export default function Home() {
     <div className="overflow-hidden bg-dark text-text-primary">
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+        {/* Cube Animation */}
+        <div className="cube-container">
+          <div className="cube"></div>
+          <div className="cube"></div>
+          <div className="cube"></div>
+          <div className="cube"></div>
+          <div className="cube"></div>
+          <div className="cube"></div>
+          <div className="cube"></div>
+          <div className="cube"></div>
+        </div>
+        
         {/* Spotlight Effect */}
         <motion.div
           style={{ y: y1 }}
@@ -31,13 +44,13 @@ export default function Home() {
             className="text-center"
           >
             <h1 className="text-5xl md:text-7xl font-heading font-bold mb-8">
-              <span className="text-primary-cyan">Connecting Ideas</span>
+              <span className="text-primary-cyan">Innovative Technology</span>
               <span className="mx-2 text-text-primary">,</span>
-              <span className="text-secondary">Shaping Futures</span>
+              <span className="text-secondary">AI-Powered Solutions</span>
               <span className="text-primary-cyan">.</span>
             </h1>
             <p className="text-xl text-text-secondary max-w-3xl mx-auto">
-            Xyora Arc creates innovative AI-powered solutions that bridge technology and real-world needs. We build impactful applications that transform business challenges into practical, forward-thinking solutions.
+              Xyora Arc is a leading UK-based app development company specializing in AI-powered solutions and machine learning-driven products. We create cutting-edge digital solutions that transform business challenges into practical, forward-thinking applications.
             </p>
           </motion.div>
         </div>
@@ -59,10 +72,10 @@ export default function Home() {
               About Xyora Arc
             </h2>
             <p className="text-lg text-text-secondary leading-relaxed">
-              Xyora Arc is a UK-based company dedicated to developing innovative apps and solutions that seamlessly integrate technology with real-world needs. Leveraging the power of AI and advanced machine learning algorithms, we create products that are not only functional but transformative. With a strong foundation of expertise and a commitment to innovation, our team combines strategic thinking, creative problem-solving, and cutting-edge technology to deliver exceptional value to users.
+              Xyora Arc is a premier UK-based technology and innovation company, specializing in AI-powered solutions and machine learning-driven products. As a leading mobile app development company in the UK, we create custom app solutions that seamlessly integrate advanced machine learning tools with real-world applications. Our team of expert AI app developers combines strategic thinking with cutting-edge digital solutions to deliver transformative digital tools for businesses.
             </p>
             <p className="text-lg text-text-secondary leading-relaxed mt-6">
-              At Xyora Arc, we aim to bridge the gap between ideas and impactful real-world applications. Whether addressing everyday challenges or advancing niche solutions, we focus on creating user-friendly and practical tools that drive progress. By harnessing AI and machine learning, our mission is to deliver solutions that inspire innovation, improve lives, and shape a more connected and forward-thinking future.
+              At Xyora Arc, we focus on practical AI applications and e-commerce business tools that drive digital transformation. Our AI-driven technology company develops innovative apps that solve real-world problems, from machine learning apps for business to AI solutions for online businesses. Whether you're looking for AI-powered solutions for business or custom solutions using AI and machine learning, our team delivers user-focused technology products that inspire innovation and improve lives.
             </p>
           </motion.div>
         </div>
@@ -78,10 +91,10 @@ export default function Home() {
             className="text-center"
           >
             <h2 className="text-3xl font-heading font-bold text-text-primary mb-4">
-              Ready to Transform Your Ideas?
+              Transform Your Business with AI Technology
             </h2>
             <p className="text-xl text-text-secondary mb-8">
-              Let's work together to bring your vision to life.
+              Discover how our innovative app development and AI-powered solutions can drive your digital transformation.
             </p>
             <button className="bg-primary-cyan text-white px-8 py-3 rounded-lg font-semibold hover:bg-opacity-90 transition-colors">
               Get Started

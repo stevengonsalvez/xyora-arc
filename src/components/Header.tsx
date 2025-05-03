@@ -6,7 +6,6 @@ import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 const navigation = [
   { name: 'Home', href: '/' },
   { name: 'About', href: '/about' },
-  { name: 'Services', href: '/services' },
   { name: 'Contact', href: '/contact' },
 ];
 
@@ -84,18 +83,13 @@ export default function Header() {
                 <Link
                   to={item.href}
                   className={`
-                    relative px-4 py-2 text-sm font-semibold leading-6 
+                    relative text-sm font-semibold leading-6 mx-4
                     ${location.pathname === item.href 
-                      ? 'text-text-primary bg-dark-lighter border-cyan-500/30' 
-                      : 'text-text-secondary bg-dark-card border-dark-border'
+                      ? 'text-primary-cyan' 
+                      : 'text-text-secondary'
                     }
-                    rounded-full border
-                    backdrop-blur-sm transition-all duration-300
-                    hover:bg-dark-lighter hover:border-cyan-500/30
+                    transition-all duration-300
                     hover:text-text-primary
-                    overflow-hidden group
-                    flex items-center justify-center
-                    min-w-[100px]
                   `}
                 >
                   <motion.span
@@ -104,7 +98,6 @@ export default function Header() {
                   >
                     {item.name}
                   </motion.span>
-                  <div className="absolute inset-0 -z-10 bg-gradient-to-r from-cyan-500/0 via-cyan-500/0 to-blue-500/0 opacity-0 group-hover:opacity-20 transition-opacity duration-300" />
                 </Link>
               </motion.div>
             ))}
@@ -152,10 +145,10 @@ export default function Header() {
                 key={item.name}
                 to={item.href}
                 className={`
-                  block rounded-lg px-4 py-3 text-base font-semibold
+                  block px-4 py-3 text-base font-semibold
                   ${location.pathname === item.href 
-                    ? 'text-text-primary bg-dark-lighter' 
-                    : 'text-text-secondary hover:bg-dark-card hover:text-text-primary'
+                    ? 'text-primary-cyan' 
+                    : 'text-text-secondary hover:text-text-primary'
                   }
                   transition-all duration-300
                 `}
