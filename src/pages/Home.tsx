@@ -43,12 +43,18 @@ export default function Home() {
             transition={{ duration: 0.8 }}
             className="text-center"
           >
-            <h1 className="text-5xl md:text-7xl font-heading font-bold mb-8">
+            <motion.h1 
+              className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold mb-6 leading-tight"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.3 }}
+            >
               <span className="text-primary-cyan">Innovative Technology</span>
               <span className="mx-2 text-text-primary">,</span>
+              <br className="md:hidden" />
               <span className="text-secondary">AI-Powered Solutions</span>
               <span className="text-primary-cyan">.</span>
-            </h1>
+            </motion.h1>
             <p className="text-xl text-text-secondary max-w-3xl mx-auto">
               Xyora Arc is a leading UK-based app development company specializing in AI-powered solutions and machine learning-driven products. We create cutting-edge digital solutions that transform business challenges into practical, forward-thinking applications.
             </p>
