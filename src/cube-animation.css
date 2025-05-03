@@ -134,7 +134,7 @@
 .focus-heading-mask {
   overflow: hidden;
   position: absolute;
-  width: 50px;
+  width: 0px;
   height: 100%;
   top: 0;
   left: 0;

@@ -46,51 +46,6 @@ const products = [
   }
 ];
 
-const cardVariants = {
-  initial: { 
-    scale: 1,
-    y: 0,
-    rotateX: 0,
-    boxShadow: "0px 0px 0px rgba(0, 184, 217, 0)"
-  },
-  hover: { 
-    scale: 1.05,
-    y: -10,
-    rotateX: 5,
-    boxShadow: "0px 20px 40px rgba(0, 184, 217, 0.2)",
-    transition: {
-      duration: 0.3,
-      ease: "easeOut"
-    }
-  }
-};
-
-const imageVariants = {
-  initial: { scale: 1 },
-  hover: { 
-    scale: 1.1,
-    transition: {
-      duration: 0.4,
-      ease: "easeOut"
-    }
-  }
-};
-
-const buttonVariants = {
-  initial: { 
-    scale: 1,
-    backgroundColor: "#00B8D9"
-  },
-  hover: { 
-    scale: 1.05,
-    backgroundColor: "#0095B0",
-    transition: {
-      duration: 0.2,
-      ease: "easeOut"
-    }
-  }
-};
-
 export default function ProductCards() {
   const [activePosition, setActivePosition] = useState(1);
   const [carouselStyle, setCarouselStyle] = useState({} as React.CSSProperties);
@@ -253,7 +208,7 @@ export default function ProductCards() {
             <div
               key={index}
               className="carousel-control"
-              data-active={activePosition === index + 1}
+              data-active={activePosition === index + 1 ? "true" : "false"}
               onClick={() => handleNavigate(index + 1)}
             />
           ))}
