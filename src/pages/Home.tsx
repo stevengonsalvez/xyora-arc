@@ -102,9 +102,12 @@ export default function Home() {
             <p className="text-xl text-text-secondary mb-8">
               Discover how our innovative app development and AI-powered solutions can drive your digital transformation.
             </p>
-            <button className="bg-primary-cyan text-white px-8 py-3 rounded-lg font-semibold hover:bg-opacity-90 transition-colors">
-              Get Started
-            </button>
+            <a 
+              href="/contact"
+              className="inline-block bg-gradient-to-r from-primary-cyan to-secondary text-white px-8 py-3 rounded-lg font-semibold hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1"
+            >
+              Let's Talk
+            </a>
           </motion.div>
         </div>
       </section>
