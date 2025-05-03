@@ -179,12 +179,17 @@ export default function ProductCards() {
                     variant="contained"
                     className="mt-2 text-sm md:text-base w-full"
                     sx={{
-                      backgroundColor: '#00B8D9',
+                      backgroundColor: product.title === 'Papaya Notes' ? '#00B8D9' : 'rgba(22, 22, 31, 0.8)',
                       '&:hover': {
-                        backgroundColor: '#0095B0'
+                        backgroundColor: product.title === 'Papaya Notes' ? '#0095B0' : 'rgba(138, 43, 226, 0.6)'
                       },
                       transform: activePosition === index + 1 ? "scale(1.05)" : "scale(1)",
-                      transition: "transform 0.2s ease-out"
+                      transition: "transform 0.2s ease-out",
+                      color: 'white',
+                      opacity: 1,
+                      border: product.title === 'Papaya Notes' ? 'none' : '1px solid #8A2BE2',
+                      fontWeight: 'bold',
+                      boxShadow: product.title === 'Papaya Notes' ? 'none' : '0 0 10px rgba(138, 43, 226, 0.3)'
                     }}
                     {...(product.title === 'Papaya Notes' 
                       ? { 
@@ -193,7 +198,7 @@ export default function ProductCards() {
                           target: '_blank',
                           rel: 'noopener noreferrer'
                         }
-                      : { disabled: true }
+                      : { }
                     )}
                   >
                     {product.title === 'Papaya Notes' ? 'Learn More' : 'Coming Soon'}
