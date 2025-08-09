@@ -1,6 +1,10 @@
-# Xyora Arc Website
+<div align="center">
+  <img src="public/logo.jpg" alt="Xyora Arc Logo" width="200" height="200">
+  
+  # Xyora Arc Website
 
-A modern, responsive website for Xyora Arc, showcasing our innovative AI and technology solutions.
+  A modern, responsive website for Xyora Arc, showcasing our innovative AI and technology solutions.
+</div>
 
 ## Design System Foundations
 
